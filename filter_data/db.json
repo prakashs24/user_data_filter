@@ -1,0 +1,114 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Leanne Graham",
+      "username": "Bret",
+      "email": "Sincere@april.biz",
+      "phone": "8545625875",
+      "gender": "Female",
+      "language": "English",
+      "active": "Yes",
+      "country": "United States"
+    },
+    {
+      "id": 2,
+      "name": "Hari",
+      "username": "Hari",
+      "email": "hari32@gmail.com",
+      "phone": "6575483859",
+      "gender": "Male",
+      "language": "English",
+      "active": "No",
+      "country": "Qatar"
+    },
+    {
+      "id": 3,
+      "name": "Clementine Bauch",
+      "username": "Samantha",
+      "email": "Nathan@yesenia.net",
+      "phone": "7894561578",
+      "gender": "Male",
+      "language": "Tamil",
+      "active": "No",
+      "country": "India"
+    },
+    {
+      "id": 4,
+      "name": "Patricia Lebsack",
+      "username": "Karianne",
+      "email": "Julianne.OConner@kory.org",
+      "phone": "8975486825",
+      "gender": "Female",
+      "language": "English",
+      "active": "Yes",
+      "country": "United States"
+    },
+    {
+      "id": 5,
+      "name": "Chelsey Dietrich",
+      "username": "Kamren",
+      "email": "Lucio_Hettinger@annie.ca",
+      "phone": "9858681524",
+      "gender": "Male",
+      "language": "Tamil",
+      "active": "No",
+      "country": "India"
+    },
+    {
+      "id": 6,
+      "name": "Mrs. Dennis Schulist",
+      "username": "Leopoldo_Corkery",
+      "email": "Karley_Dach@jasper.info",
+      "phone": "6858485784",
+      "gender": "Female",
+      "language": "English",
+      "active": "Yes",
+      "country": "Oman"
+    },
+    {
+      "id": 7,
+      "name": "Kurtis Weissnat",
+      "username": "Elwyn.Skiles",
+      "email": "Telly.Hoeger@billy.biz",
+      "phone": "7858684215",
+      "gender": "Male",
+      "language": "Tamil",
+      "active": "Yes",
+      "country": "India"
+    },
+    {
+      "id": 8,
+      "name": "Nicholas Runolfsdottir V",
+      "username": "Maxime_Nienow",
+      "email": "Sherwood@rosamond.me",
+      "phone": "6514257898",
+      "gender": "Male",
+      "language": "English",
+      "active": "No",
+      "country": "United States"
+    },
+    {
+      "id": 9,
+      "name": "Glenna Reichert",
+      "username": "Delphine",
+      "email": "Chaim_McDermott@dana.io",
+      "phone": "7858641586",
+      "gender": "Female",
+      "language": "English",
+      "active": "Yes",
+      "country": "Oman"
+    },
+    {
+      "id": 10,
+      "name": "Clementina DuBuque",
+      "username": "Moriah.Stanton",
+      "email": "Rey.Padberg@karina.biz",
+      "phone": "8847556514",
+      "gender": "Male",
+      "language": "Tamil",
+      "active": "No",
+      "country": "India"
+    }
+  ]
+}
