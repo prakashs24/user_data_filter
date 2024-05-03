@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Home() {
     const [data, setData] = useState([]);
@@ -17,48 +17,70 @@ function Home() {
 
     useEffect(() => {
         axios.get('http://localhost:3000/user')
-            .then(res => setData(res.data))
+            .then(res => {
+                setData(res.data);
+                setSortList(res.data); 
+            })
             .catch(err => console.log(err));
     }, []);
 
     const handleFilterChange = (event) => {
-        const { name, value } = event.target;
-        setFilters({ ...filters, [name]: value });
+        const { name, value, type, checked } = event.target;
+        if (type === 'checkbox') {
+            const updatedValues = checked ?
+                [...filters[name], value] :
+                filters[name].filter(val => val !== value); 
+    
+            setFilters({ ...filters, [name]: updatedValues });
+        } else {
+            setFilters({ ...filters, [name]: value });
+        }
     };
 
-    useEffect(() => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
         let filteredData = [...data];
 
+       
         for (const key in filters) {
             if (filters[key]) {
                 if (key === 'name' || key === 'email' || key === 'phone') {
                     filteredData = filteredData.filter(item => item[key].toLowerCase().includes(filters[key].toLowerCase()));
-                } else if (key === 'gender' || key === 'country' || key === 'language' || key === 'active') {
+                } else if (key === 'gender' || key === 'country' || key === 'active') {
                     filteredData = filteredData.filter(item => item[key].toLowerCase() === filters[key].toLowerCase());
+                } else if (key === 'language') {
+                    filteredData = filteredData.filter(item => filters.language.includes(item.language.toLowerCase()));
                 }
             }
         }
 
         setSortList(filteredData);
-    }, [filters, data]);
+    };
 
     return (
         <div className='d-flex flex-column justify-content-center align-items-center bg-light'>
             <h1>List of Users</h1>
+            {/* name ,email, phone */}
             <div className='row'>
-            <label htmlFor="name">Name :</label><input type='text' name='name' className='form-control' placeholder='Search by name' onChange={handleFilterChange} />
-            <label htmlFor="email">Email :</label><input type='email' name='email' className='form-control' placeholder='Search by email' onChange={handleFilterChange} />
-            <label htmlFor="phone">Phone :</label><input type='text' name='phone' className='form-control' placeholder='Search by phone' onChange={handleFilterChange} />
+                <label htmlFor="name">Name :</label><input type='text' name='name' className='form-control' placeholder='Search by name' onChange={handleFilterChange} />
+                <label htmlFor="email">Email :</label><input type='email' name='email' className='form-control' placeholder='Search by email' onChange={handleFilterChange} />
+                <label htmlFor="phone">Phone :</label><input type='text' name='phone' className='form-control' placeholder='Search by phone' onChange={handleFilterChange} />
             </div>
+            {/* gender */}
             <div className="row">
                 <div className="col">
                     <label htmlFor="gender">Gender:</label>
-                    <select name="gender" className="form-control" onChange={handleFilterChange}>
-                        <option value="">All</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1" onChange={handleFilterChange} />
+                        <label className="form-check-label" htmlFor="flexRadioDefault1">Male</label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault2" onChange={handleFilterChange} />
+                        <label className="form-check-label" htmlFor="flexRadioDefault2">Female</label>
+                    </div>
                 </div>
+                {/* country */}
                 <div className="col">
                     <label htmlFor="country">Country:</label>
                     <select name="country" className="form-control" onChange={handleFilterChange}>
@@ -69,24 +91,34 @@ function Home() {
                         <option value="Oman">Oman</option>
                     </select>
                 </div>
+                {/* language */}
                 <div className="col">
                     <label htmlFor="language">Language:</label>
-                    <select name="language" className="form-control" onChange={handleFilterChange}>
-                        <option value="">All</option>
-                        <option value="tamil">Tamil</option>
-                        <option value="english">English</option>
-                    </select>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" name="language" value="tamil" id="languageCheckbox1" onChange={handleFilterChange} />
+                        <label className="form-check-label" htmlFor="languageCheckbox1">Tamil</label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" name="language" value="english" id="languageCheckbox2" onChange={handleFilterChange} />
+                        <label className="form-check-label" htmlFor="languageCheckbox2">English</label>
+                    </div>
                 </div>
+
                 <div className="col">
                     <label htmlFor="active">Active:</label>
-                    <select name="active" className="form-control" onChange={handleFilterChange}>
-                        <option value="">All</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="active" value="yes" id="flexRadioDefault3" onChange={handleFilterChange} />
+                        <label className="form-check-label" htmlFor="flexRadioDefault3">Yes</label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="active" value="no" id="flexRadioDefault4" onChange={handleFilterChange} />
+                        <label className="form-check-label" htmlFor="flexRadioDefault4">No</label>
+                    </div>
                 </div>
             </div>
 
+            {/* Submit Button */}
+            <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
             <div className='w-75 rounded bg-white border shadow p-4'>
                 {sortList.length > 0 ? (<table className='table table-striped'>
                     <thead>
@@ -122,4 +154,3 @@ function Home() {
 }
 
 export default Home;
-
